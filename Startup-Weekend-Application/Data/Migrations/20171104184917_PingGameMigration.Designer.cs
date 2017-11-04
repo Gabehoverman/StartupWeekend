@@ -11,9 +11,10 @@ using System;
 namespace Startup_Weekend_Application.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171104184917_PingGameMigration")]
+    partial class PingGameMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,15 +195,11 @@ namespace Startup_Weekend_Application.Data.Migrations
 
                     b.Property<string>("Game");
 
-                    b.Property<string>("Platform");
-
-                    b.Property<string>("PlayStyle");
-
-                    b.Property<string>("SkillLevel");
+                    b.Property<int>("GameId");
 
                     b.Property<DateTime>("Time");
 
-                    b.Property<string>("Username");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 

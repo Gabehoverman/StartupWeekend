@@ -11,9 +11,10 @@ using System;
 namespace Startup_Weekend_Application.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171104190235_PingAttributesAdded")]
+    partial class PingAttributesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,7 +203,7 @@ namespace Startup_Weekend_Application.Data.Migrations
 
                     b.Property<DateTime>("Time");
 
-                    b.Property<string>("Username");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 

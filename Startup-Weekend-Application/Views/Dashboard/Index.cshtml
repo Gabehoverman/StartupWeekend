@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Startup_Weekend_Application.Models.ApplicationUser>
+﻿@model Startup_Weekend_Application.Models.Ping
+
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -7,43 +8,87 @@
  <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
+                                <h4 class="title">Current Beacons</h4>
+                                <p class="category">View people wanting to play.</p>
                             </div>
                             <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                <div>
+
+                              
+                                @Html.Partial("BeaconPartial")
+							
+						        </div>
+                                
+						        
 
                                 <div class="footer">
+
                                     <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                        <a href="/dashboard/beacons" class="btn btn-danger">View All</a>
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                        <i class="fa fa-clock-o"></i> Last updated 2 minutes ago.
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Users Behavior</h4>
-                                <p class="category">24 Hours performance</p>
+                                <h4 class="title">Add New Beacon</h4>
+                                <p class="category">Create a beacon to play.</p>
                             </div>
                             <div class="content">
-                                <div id="chartHours" class="ct-chart"></div>
-                                <div class="footer">
+                                <div ></div>
+						
+
+						            <form asp-action="Create">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label asp-for="Game" class="control-label"></label>
+                                            <input asp-for="Game" class="form-control" />
+                                            <span asp-validation-for="Game" class="text-danger"></span>
+                                        </div>
+							            <div class="form-group">
+                                            <label asp-for="Platform" class="control-label"></label>
+                                            <select asp-for="Platform" class="form-control" id="Platform" name="Platform">
+                                                <option value="">- Select Your Platform -</option>
+                                                <option value="Xbox">Xbox</option>
+                                                <option value="Play Station 4">Play Station 4</option>
+                                                <option value="PC">PC</option>
+                                            </select>
+                                        </div>
+							            <div class="form-group">
+								            <label asp-for="PlayStyle" class="control-label"></label>
+    							            <select asp-for="PlayStyle" class="form-control" id="PlayStyle" name="PlayStyle">
+            								    <option value="">- Select Your Playstyle -</option>
+                                                <option value="Casual">Casual</option>
+                                                <option value="Competitive">Competitive</option>
+                                            </select>
+								        </div>
+                                       <div class="form-group">
+                                            <label asp-for="SkillLevel" class="control-label"></label>
+                                            <select asp-for="SkillLevel" class="form-control" id="SkillLevel" name="SkillLevel">
+                                                <option value="">- Slect Your Skill Level -</option>
+                                                <option value="Beginner">Beginner</option>
+                                                <option value="Intermediate">Intermediate</option>
+									            <option value="Expert">Expert</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Create" class="btn btn-danger" />
+                                        </div>
+                                    </form>
+						
+                                 <div class="footer">
                                     <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Click
-                                        <i class="fa fa-circle text-warning"></i> Click Second Time
+                                     
                                     </div>
                                     <hr>
                                     <div class="stats">
