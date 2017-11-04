@@ -20,6 +20,11 @@ namespace Startup_Weekend_Application.Models.ManageViewModels
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Location { get; set; }
+        public DateTime DateOfBirth { get; set; } 
+
         public string StatusMessage { get; set; }
     }
 }

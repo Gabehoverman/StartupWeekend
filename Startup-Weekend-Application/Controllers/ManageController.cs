@@ -60,7 +60,11 @@ namespace Startup_Weekend_Application.Controllers
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,
-                StatusMessage = StatusMessage
+                StatusMessage = StatusMessage,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Location = user.Location,
+                DateOfBirth = user.DateOfBirth
             };
 
             return View(model);
