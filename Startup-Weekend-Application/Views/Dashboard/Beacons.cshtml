@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Startup_Weekend_Application.Models.Ping>
+
+@{
+    Layout="~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>Pings</h2>
+
+@foreach (Ping ping in (IEnumerable<Ping>)ViewData["Pings"]){
+
+    <h2>Ping</h2>
+
+    }

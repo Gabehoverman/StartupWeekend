@@ -27,13 +27,22 @@
     margin: 15px 0;
 }
 .all-icons .font-icon-detail input{
-    margin: 25px auto 0;
+    margin: 25px auto 0; 
     width: 100%;
     text-align: center;
     display: block;
     color: #aaa;
     font-size: 13px;
 }
+
+    .all-icons .font-icon-detail select {
+        margin: 25px auto 0;
+        width: 100%;
+        text-align: center;
+        display: block;
+        color: #aaa;
+        font-size: 13px;
+    }
 
 #map{
     position:relative;
