@@ -4,10 +4,48 @@
     Layout="~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<h2>Pings</h2>
+<div class="content">
+            <div class="container-fluid">
+		
+		          <button style="float:right;" class="btn btn-danger" data-toggle="collapse" data-target="#filter">Add New</button>
+        		
 
-@foreach (Ping ping in (IEnumerable<Ping>)ViewData["Pings"]){
 
-    <h2>Ping</h2>
+                <div class="row">
+                    <div class="col-md-12">
+				
+				        <div class="card">
+					
+        				    <div id="filter" class="collapse">
+						        <div class="content">
 
-    }
+                            @Html.Partial("BeaconFormPartial")
+						        </div>
+        				    </div>
+					    </div>
+				    @foreach (Ping ping in (IEnumerable<Ping>)ViewData["Pings"]) {
+                        <div class="card">
+					        <div class="content">
+						        <div class="row">
+                                    <div class="col-md-10">
+                                        <h3 class="title">@ping.Game</h3>
+                                        <p class="category">@ping.Platform</p>
+                                    </div>
+            						<div class="col-md-2">
+    							        <h4 class="title">@ping.PlayStyle</h4>
+									    <p class="category"> @ping.SkillLevel</p>
+								
+            						</div>
+    						    </div>
+						       
+				                <div class="footer">
+							    <hr>
+                                    <p class="category">Posted x minutes ago</p>
+					            </div>
+						    </div>   
+                        </div>
+			        }
+
+                </div>
+            </div>
+        </div>

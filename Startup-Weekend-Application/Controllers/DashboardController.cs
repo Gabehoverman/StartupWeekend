@@ -8,6 +8,7 @@ using Startup_Weekend_Application.Data;
 using Startup_Weekend_Application.Models;
 using Startup_Weekend_Application.Models.ManageViewModels;
 using System.Security.Claims;
+using System.Diagnostics.Contracts;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -29,10 +30,12 @@ namespace Startup_Weekend_Application.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Ping> Pings = _context.Ping.ToList();
-            foreach (Ping Ping in Pings) {
-                //
-            }
+            var username = _userManager.GetUserName(User);
+
+            List<Ping> Pingers = _context.Ping.Where(p => p.Username.Contains(username)).ToList();
+            ViewData["pingers"] = Pingers;
+
+			List<Ping> Pings = _context.Ping.ToList();
 
             ViewData["pings"] = Pings;
 
@@ -40,6 +43,20 @@ namespace Startup_Weekend_Application.Controllers
             return View();
         }
 
+        //Not In Use;
+        public async Task<IAsyncResult> MatchUsersAsync()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+			List<Ping> Ping = 
+                (System.Collections.Generic.List<Startup_Weekend_Application.Models.Ping>)
+                (from ping in _context.Ping
+                where ping.Username == user.UserName
+                select ping);
+            return (System.IAsyncResult)Ping;
+        }
+
+        //Returns all pings for beacons page
         public IActionResult Beacons() {
 
             List<Ping> BeaconList = _context.Ping.ToList();
@@ -50,7 +67,7 @@ namespace Startup_Weekend_Application.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("Id,UserId,Game,Time,Platform,PlayStyle,SkillLevel")] Ping ping)
+		public async Task<IActionResult> Create([Bind("Id,Username,Game,Time,Platform,PlayStyle,SkillLevel")] Ping ping)
 		{
             var user = await _userManager.GetUserAsync(User);
             ping.Username = user.UserName;
@@ -62,6 +79,24 @@ namespace Startup_Weekend_Application.Controllers
 				_context.Add(ping);
 				await _context.SaveChangesAsync();
 				return RedirectToAction(nameof(Index));
+			}
+			return View(ping);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> New([Bind("Id,Username,Game,Time,Platform,PlayStyle,SkillLevel")] Ping ping)
+		{
+			var user = await _userManager.GetUserAsync(User);
+			ping.Username = user.UserName;
+
+			ping.Time = DateTime.Now;
+
+			if (ModelState.IsValid)
+			{
+				_context.Add(ping);
+				await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Beacons));
 			}
 			return View(ping);
 		}

@@ -28,24 +28,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in (IEnumerable<Ping>)ViewData["pings"]) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Game)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Platform)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlayStyle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SkillLevel)
-            </td>
-        </tr>
-}
+		@if(ViewData["pingers"] != null) {
+            foreach (var item in (IEnumerable<Ping>)ViewData["pings"]) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Game)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Platform)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlayStyle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SkillLevel)
+                        </td>
+                    </tr>
+            }
+		} else {
+            <h2>No pings in your area</h2>
+		}
     </tbody>
 </table>

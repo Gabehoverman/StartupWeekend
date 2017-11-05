@@ -1,0 +1,39 @@
+﻿@model Startup_Weekend_Application.Models.Ping
+
+        <form asp-action="New">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Game" class="control-label"></label>
+                <input asp-for="Game" class="form-control" />
+                <span asp-validation-for="Game" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Platform" class="control-label"></label>
+                <select asp-for="Platform" class="form-control" id="Platform" name="Platform">
+                    <option value="">- Select Your Platform -</option>
+                    <option value="Xbox">Xbox</option>
+                    <option value="Play Station 4">Play Station 4</option>
+                    <option value="PC">PC</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlayStyle" class="control-label"></label>
+                <select asp-for="PlayStyle" class="form-control" id="PlayStyle" name="PlayStyle">
+                    <option value="">- Select Your Playstyle -</option>
+                    <option value="Casual">Casual</option>
+                    <option value="Competitive">Competitive</option>
+                </select>
+            </div>
+           <div class="form-group">
+                <label asp-for="SkillLevel" class="control-label"></label>
+                <select asp-for="SkillLevel" class="form-control" id="SkillLevel" name="SkillLevel">
+                    <option value="">- Slect Your Skill Level -</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Expert">Expert</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-danger" />
+            </div>
+        </form>
