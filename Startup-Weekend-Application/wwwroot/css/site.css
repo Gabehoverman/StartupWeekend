@@ -37,3 +37,14 @@
 .Dpings {
     border: 3px solid black;
 }
+
+/*Footer*/
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #101010;
+    text-align: center;
+}

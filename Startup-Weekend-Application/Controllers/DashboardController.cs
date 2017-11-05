@@ -44,6 +44,16 @@ namespace Startup_Weekend_Application.Controllers
             return View();
         }
 
+        public IActionResult Profile(String Username)
+        {
+
+            var user = _context.ApplicationUsers.Where(p => p.UserName.Contains(Username));
+
+            ViewData["User"] = user;
+
+            return View();
+        }
+
 		public IActionResult Interests()
 		{
             var username = _userManager.GetUserName(User);
