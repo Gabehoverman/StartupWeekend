@@ -7,5 +7,6 @@ namespace Startup_Weekend_Application.Models
         public string Username { get; set; }
         public string GameTitle { get; set; }
         public string Platform { get; set; }
+        public bool IsActive { get; set; }
     }
 }
