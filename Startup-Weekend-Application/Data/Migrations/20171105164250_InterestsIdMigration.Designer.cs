@@ -12,9 +12,10 @@ using System;
 namespace Startup_Weekend_Application.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171105164250_InterestsIdMigration")]
+    partial class InterestsIdMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,8 +215,6 @@ namespace Startup_Weekend_Application.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("GameTitle");
-
-                    b.Property<bool>("IsActive");
 
                     b.Property<string>("Platform");
 

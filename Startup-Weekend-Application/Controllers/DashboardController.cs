@@ -33,6 +33,8 @@ namespace Startup_Weekend_Application.Controllers
             var username = _userManager.GetUserName(User);
             List<Ping> Pingers = _context.Ping.Where(p => p.Username.Contains(username)).ToList();
             ViewData["pingers"] = Pingers;
+            List<Interests> interests = _context.Interests.Where(p => p.Username.Contains(username)).ToList();
+            ViewData["interests"] = interests;
 
 			List<Ping> Pings = _context.Ping.ToList();
 
@@ -41,6 +43,15 @@ namespace Startup_Weekend_Application.Controllers
 
             return View();
         }
+
+		public IActionResult Interests()
+		{
+            var username = _userManager.GetUserName(User);
+			List<Interests> interests = _context.Interests.Where(p => p.Username.Contains(username)).ToList();
+			ViewData["interests"] = interests;
+
+			return View();
+		}
 
         //Not In Use;
         public async Task<IAsyncResult> MatchUsersAsync()
@@ -98,6 +109,24 @@ namespace Startup_Weekend_Application.Controllers
                 return RedirectToAction(nameof(Beacons));
 			}
 			return View(ping);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+        public async Task<IActionResult> NewInterest([Bind("Id,Username,GameTitle,Platform,IsActive")] Interests interest)
+		{
+			var user = await _userManager.GetUserAsync(User);
+            interest.Username = user.UserName;
+            interest.IsActive = true;
+
+
+			if (ModelState.IsValid)
+			{
+                _context.Add(interest);
+				await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(DashboardController.Interests));
+			}
+            return View(interest);
 		}
 
     }

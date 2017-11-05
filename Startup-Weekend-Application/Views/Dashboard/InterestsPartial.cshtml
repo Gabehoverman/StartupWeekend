@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Startup_Weekend_Application.Models.Interests>
+
+<div class="col-md-6">
+<div class="card ">
+    <div class="header">
+        <h4 class="title">Your Interests</h4>
+        <p class="category">Games you are interested in.</p>
+    </div>
+    <div class="content">
+        <div class="table-full-width">
+				<table class="table">
+    <thead>
+        <tr>
+				<th>
+					Notifications
+				</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GameTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Platform)
+                </th>
+				<th>
+					Remove
+				</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(ViewData["interests"] != null) {
+            foreach (var item in (IEnumerable<Interests>)ViewData["interests"]) {
+                    <tr>
+						<td>
+							@if (item.IsActive == true) {
+                                <label class="checkbox">
+                                    <input type="checkbox" value="" data-toggle="checkbox" checked>
+                                </label>
+							} else {
+								<label class="checkbox">
+                                    <input type="checkbox" value="" data-toggle="checkbox">
+                                </label>
+						   }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GameTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Platform)
+                        </td>
+						<td>
+							<button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                <i class="fa fa-times"></i>
+                            </button>
+						</td>
+                    </tr>
+            }
+        } else {
+            <h2>No pings in your area</h2>
+        }
+    </tbody>
+</table>
+            
+        </div>
+
+        <div class="footer">
+            <hr>
+            <div class="stats">
+                <i class="fa fa-history"></i> Updated 3 minutes ago
+            </div>
+        </div>
+    </div>
+</div>
+	</div>

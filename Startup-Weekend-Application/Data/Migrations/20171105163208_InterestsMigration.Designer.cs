@@ -12,9 +12,10 @@ using System;
 namespace Startup_Weekend_Application.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171105163208_InterestsMigration")]
+    partial class InterestsMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,24 +207,6 @@ namespace Startup_Weekend_Application.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Discover");
-                });
-
-            modelBuilder.Entity("Startup_Weekend_Application.Models.Interests", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("GameTitle");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<string>("Platform");
-
-                    b.Property<string>("Username");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Interests");
                 });
 
             modelBuilder.Entity("Startup_Weekend_Application.Models.Ping", b =>
