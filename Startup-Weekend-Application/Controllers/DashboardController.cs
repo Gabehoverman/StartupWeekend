@@ -31,7 +31,6 @@ namespace Startup_Weekend_Application.Controllers
         public IActionResult Index()
         {
             var username = _userManager.GetUserName(User);
-
             List<Ping> Pingers = _context.Ping.Where(p => p.Username.Contains(username)).ToList();
             ViewData["pingers"] = Pingers;
 
