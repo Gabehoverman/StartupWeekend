@@ -21,9 +21,20 @@ namespace Startup_Weekend_Application.Controllers
         //Get Discover Pings
         public IActionResult Index()
         {
-            var Dpings = _dbContext.Discover.ToList();
+            List<Discover> Dpings = _dbContext.Discover.ToList();
 
             return View(Dpings);
+        }
+
+        public ActionResult New()
+        {
+            return View();
+        }
+        public ActionResult Add(Discover Dping)
+        {
+            _dbContext.Discover.Add(Dping);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
