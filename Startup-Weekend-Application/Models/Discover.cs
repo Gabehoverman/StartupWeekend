@@ -44,5 +44,6 @@ namespace Startup_Weekend_Application.Models
         Casual = 1,
         Competative
     }
+
 }
 

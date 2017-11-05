@@ -5,9 +5,14 @@
 }
 
 <h2>Discover</h2>
+<p>
+    @Html.ActionLink("Add Video", "New")
+</p>
 <ul>
     @foreach (var Dping in Model)
     {
-        <li>@Dping.Game @Dping.Username @Dping.Platform (@Dping.Playstyle) (@Dping.Genre)</li>
+        <div class ="Dpings">
+    <li>@Dping.Game @Dping.Username @Dping.Platform (@Dping.Playstyle) (@Dping.Genre)</li>
+        </div>
     }
 </ul>
