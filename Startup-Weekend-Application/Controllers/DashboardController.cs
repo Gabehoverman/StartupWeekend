@@ -42,6 +42,11 @@ namespace Startup_Weekend_Application.Controllers
             return View();
         }
 
+		public IActionResult Interests()
+		{
+			return View();
+		}
+
         //Not In Use;
         public async Task<IAsyncResult> MatchUsersAsync()
         {
