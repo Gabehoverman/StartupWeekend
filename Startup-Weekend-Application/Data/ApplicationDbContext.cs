@@ -24,5 +24,6 @@ namespace Startup_Weekend_Application.Data
         }
 
         public DbSet<Startup_Weekend_Application.Models.Ping> Ping { get; set; }
+        public DbSet<Startup_Weekend_Application.Models.Discover> Discover { get; set; }
     }
 }
