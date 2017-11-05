@@ -31,6 +31,8 @@ namespace Startup_Weekend_Application.Controllers
         public IActionResult Index()
         {
             var username = _userManager.GetUserName(User);
+            List<Ping> Pingers = _context.Ping.Where(p => p.Username.Contains(username)).ToList();
+            ViewData["pingers"] = Pingers;
 
 			List<Ping> Pings = _context.Ping.ToList();
 
@@ -53,6 +55,7 @@ namespace Startup_Weekend_Application.Controllers
             return (System.IAsyncResult)Ping;
         }
 
+        //Returns all pings for beacons page
         public IActionResult Beacons() {
 
             List<Ping> BeaconList = _context.Ping.ToList();
@@ -75,6 +78,24 @@ namespace Startup_Weekend_Application.Controllers
 				_context.Add(ping);
 				await _context.SaveChangesAsync();
 				return RedirectToAction(nameof(Index));
+			}
+			return View(ping);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> New([Bind("Id,Username,Game,Time,Platform,PlayStyle,SkillLevel")] Ping ping)
+		{
+			var user = await _userManager.GetUserAsync(User);
+			ping.Username = user.UserName;
+
+			ping.Time = DateTime.Now;
+
+			if (ModelState.IsValid)
+			{
+				_context.Add(ping);
+				await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Beacons));
 			}
 			return View(ping);
 		}
