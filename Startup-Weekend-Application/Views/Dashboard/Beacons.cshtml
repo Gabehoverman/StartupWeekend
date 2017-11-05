@@ -23,17 +23,19 @@
 						        </div>
         				    </div>
 					    </div>
-				    @foreach (Ping ping in (IEnumerable<Ping>)ViewData["Pings"]) {
+				    @foreach (Ping ping in (IEnumerable<Ping>)ViewData["richPings"]) {
 				
-                        <div class="card col-md-5" style="margin-right: 25px;">
+                        <div class="card col-md-12" style="margin-right: px;">
 					        <div class="content">
 						        <div class="row">
                                     <div class="col-md-10">
+								        
                                         <h3 class="title">@ping.Game</h3>
                                         <p class="category">@ping.Platform</p>
                                     </div>
             						<div class="col-md-2">
-    							        <h4 class="title">@ping.PlayStyle</h4>
+								            <h3 class="title">@ping.Username</h3>
+    							        <h5 class="title">@ping.PlayStyle</h5>
 									    <p class="category"> @ping.SkillLevel</p>
 								
             						</div>

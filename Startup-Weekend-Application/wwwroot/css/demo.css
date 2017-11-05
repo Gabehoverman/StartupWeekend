@@ -68,3 +68,21 @@
 .table-upgrade td:nth-child(3){
     text-align: center;
 }
+
+
+.navbar, .navbar-default, .navbar-fixed {
+    backgrund: #101010;
+}
+
+#admin-nav {
+    background: #101010;
+    color: white;
+}
+
+.nav li  a {
+    color: white;
+}
+
+.white {
+    color:white;
+}

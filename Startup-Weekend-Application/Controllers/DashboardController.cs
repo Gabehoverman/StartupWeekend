@@ -31,10 +31,18 @@ namespace Startup_Weekend_Application.Controllers
         public IActionResult Index()
         {
             var username = _userManager.GetUserName(User);
-            List<Ping> Pingers = _context.Ping.Where(p => p.Username.Contains(username)).ToList();
-            ViewData["pingers"] = Pingers;
+
             List<Interests> interests = _context.Interests.Where(p => p.Username.Contains(username)).ToList();
             ViewData["interests"] = interests;
+
+            List<Ping> richPings = new List<Ping>();
+
+            foreach (Interests interest in interests) {
+                List<Ping> richPing = _context.Ping.Where(p => p.Game.Contains(interest.GameTitle)).ToList();
+                richPings.AddRange(richPing);
+            }
+
+            ViewData["richPings"] = richPings;
 
 			List<Ping> Pings = _context.Ping.ToList();
 
@@ -69,8 +77,20 @@ namespace Startup_Weekend_Application.Controllers
         //Returns all pings for beacons page
         public IActionResult Beacons() {
 
-            List<Ping> BeaconList = _context.Ping.ToList();
-            ViewData["Pings"] = BeaconList;
+            var username = _userManager.GetUserName(User);
+
+			List<Interests> interests = _context.Interests.Where(p => p.Username.Contains(username)).ToList();
+			ViewData["interests"] = interests;
+
+			List<Ping> richPings = new List<Ping>();
+
+			foreach (Interests interest in interests)
+			{
+				List<Ping> richPing = _context.Ping.Where(p => p.Game.Contains(interest.GameTitle)).ToList();
+				richPings.AddRange(richPing);
+			}
+
+            ViewData["richPings"] = richPings;
 
             return View();
         }
